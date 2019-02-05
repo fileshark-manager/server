@@ -9,6 +9,8 @@ const errorHandlers = require('./handlers/errorHandlers');
 // create our Express app
 const app = express();
 
+app.set('view engine', 'pug');
+
 // serves up static files from the public folder. Anything in public/ will just be served up as the file it is
 app.use(express.static(path.join(__dirname, 'public')));
 
