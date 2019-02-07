@@ -19,6 +19,15 @@ exports.create = async (req, res) => {
     res.json(folder);
 };
 
+exports.update = async (req, res) => {
+    const folder = await Folder.findOneAndUpdate({_id: req.params.id}, req.body, {
+        new: true, // return new folder instead of the old one,
+        runValidators: true
+    }).exec();
+
+    res.json(folder);
+};
+
 exports.delete = async (req, res) => {
     const {id = ''} = req.params;
 
