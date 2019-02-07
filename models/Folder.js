@@ -16,6 +16,13 @@ const folderSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     }
+}, {
+    toJSON: {virtuals: true},
+    toObject: {virtuals: true}
+});
+
+folderSchema.virtual('id').get(function () {
+    return this._id.toHexString();
 });
 
 module.exports = mongoose.model('Folder', folderSchema);
