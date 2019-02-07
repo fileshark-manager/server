@@ -2,9 +2,13 @@ const mongoose = require('mongoose');
 const File = mongoose.model('File');
 
 exports.getAll = async (req, res) => {
-    const {page = 1, folder = ''} = req.query;
+    const {page = 0, folder = ''} = req.query;
     const limit = 25;
-    const skip = (page * limit) - limit;
+    const offset = page * limit;
+    const diff = offset - limit;
+    const skip = (diff > 0)
+        ? diff
+        : 0;
 
     const filesPromise = File
         .find({folder})
