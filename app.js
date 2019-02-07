@@ -24,6 +24,21 @@ app.use(expressValidator());
 // populates req.cookies with any cookies that came along with the request
 app.use(cookieParser());
 
+// cors headers
+app.use((req, res, next) => {
+    const allowedOrigins = ['http://localhost:3000/'];
+    const {origin = ''} = req.headers;
+
+    if (allowedOrigins.indexOf(origin) > -1){
+        res.setHeader('Access-Control-Allow-Origin', origin);
+    }
+
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    res.header('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, DELETE');
+
+    return next();
+});
+
 // After allllll that above middleware, we finally handle our own routes!
 app.use('/', routes);
 
