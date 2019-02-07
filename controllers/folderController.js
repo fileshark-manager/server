@@ -18,3 +18,11 @@ exports.create = async (req, res) => {
 
     res.json(folder);
 };
+
+exports.delete = async (req, res) => {
+    const {id = ''} = req.params;
+
+    await Folder.findOneAndRemove({_id: id});
+
+    return res.json(id);
+};

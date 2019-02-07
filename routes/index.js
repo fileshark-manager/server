@@ -8,6 +8,6 @@ router.get('/api/folder', catchErrors(folderController.getAll));
 router.get('/api/folder/:id', catchErrors(folderController.get));
 router.post('/api/folder', catchErrors(folderController.create));
 // router.put('/api/folder/:id', updateFolderController);
-// router.delete('/api/folder/:id', deleteFolderController);
+router.delete('/api/folder/:id', folderController.delete);
 
 module.exports = router;
