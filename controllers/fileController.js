@@ -20,6 +20,12 @@ exports.getAll = async (req, res) => {
     res.json({list: files, hasMore});
 };
 
+exports.get = async (req, res) => {
+    const file = await File.find({_id: req.params.id});
+
+    res.json(file);
+};
+
 exports.create = async (req, res) => {
     // handle file upload mechanics
     const file = await (new File(req.body)).save();
