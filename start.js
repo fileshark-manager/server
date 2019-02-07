@@ -20,6 +20,7 @@ mongoose.connection.on('error', (err) => {
 
 // READY?! Let's go!
 require('./models/Folder');
+require('./models/File');
 
 // Start our app!
 const app = require('./app');
