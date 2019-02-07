@@ -13,7 +13,7 @@ router.delete('/api/folder/:id', folderController.delete);
 
 router.get('/api/file', fileController.getAll); // учесть offset, limit, folder в GET параметрах для пагинации
 // router.get('/:id', getFileController);
-// router.post('/', createFileController);
+router.post('/api/file', fileController.create);
 // router.put('/:id', updateFileController);
 // router.delete('/:id', deleteFileController);
 
