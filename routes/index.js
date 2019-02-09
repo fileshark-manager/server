@@ -15,6 +15,6 @@ router.get('/api/file', catchErrors(fileController.getAll)); // учесть off
 router.get('/api/file/:id', catchErrors(fileController.get));
 router.post('/api/file', catchErrors(fileController.create));
 router.put('/api/file/:id', catchErrors(fileController.update));
-// router.delete('/:id', deleteFileController);
+router.delete('/api/file/:id', catchErrors(fileController.delete));
 
 module.exports = router;

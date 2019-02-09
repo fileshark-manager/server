@@ -45,3 +45,11 @@ exports.update = async (req, res) => {
 
     res.json(file);
 };
+
+exports.delete = async (req, res) => {
+    const {id = ''} = req.params;
+
+    await File.findOneAndRemove({_id: id});
+
+    return res.json(id);
+};
