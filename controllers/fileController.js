@@ -70,7 +70,6 @@ exports.get = async (req, res) => {
 };
 
 exports.create = async (req, res) => {
-    // handle file upload mechanics
     const file = await (new File(req.body)).save();
 
     res.json(file);
