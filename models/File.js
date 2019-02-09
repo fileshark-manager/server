@@ -35,12 +35,16 @@ const fileSchema = new mongoose.Schema({
         default: Date.now
     }
 }, {
-    toJSON: {virtuals: true},
-    toObject: {virtuals: true}
+    toJSON: {virtuals: true, getters: true},
+    toObject: {virtuals: true, getters: true}
 });
 
 fileSchema.virtual('id').get(function () {
     return this._id.toHexString();
+});
+
+fileSchema.path('url').get(function(value) {
+    return `${process.env.HOST}${value}`;
 });
 
 module.exports = mongoose.model('File', fileSchema);
