@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const fileExtension = require('file-extension');
 
 mongoose.Promise = global.Promise;
 
@@ -39,8 +40,12 @@ const fileSchema = new mongoose.Schema({
     toObject: {virtuals: true, getters: true}
 });
 
-fileSchema.virtual('id').get(function () {
+fileSchema.virtual('id').get(function() {
     return this._id.toHexString();
+});
+
+fileSchema.virtual('extension').get(function() {
+    return fileExtension(this.url);
 });
 
 fileSchema.path('url').get(function(value) {
