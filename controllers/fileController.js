@@ -1,5 +1,44 @@
 const mongoose = require('mongoose');
 const File = mongoose.model('File');
+const multer = require('multer');
+const jimp = require('jimp');
+const uuid = require('uuid');
+
+const multerOptions = {
+    storage: multer.memoryStorage(),
+    fileFilter(req, file, next) {
+        const isPhoto = file.mimetype.startsWith('image/');
+
+        if (isPhoto) {
+            next(null, true);
+        } else {
+            next({message: 'That filetype is not allowed!'}, false);
+        }
+    }
+};
+
+exports.upload = multer(multerOptions).single('file');
+
+exports.resize = async (req, res, next) => {
+    if (!req.file) {
+        next();
+
+        return;
+    }
+
+    const extension = req.file.mimetype.split('/')[1];
+
+    const fileName = `${uuid.v4()}.${extension}`;
+
+    req.body.url = `/uploads/${fileName}`;
+
+    const file = await jimp.read(req.file.buffer);
+
+    await file.resize(800, jimp.AUTO);
+    await file.write(`./public/uploads/${fileName}`);
+
+    next();
+};
 
 exports.getAll = async (req, res) => {
     const {page = 0, folder = ''} = req.query;
