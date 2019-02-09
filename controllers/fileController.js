@@ -36,3 +36,12 @@ exports.create = async (req, res) => {
 
     res.json(file);
 };
+
+exports.update = async (req, res) => {
+    const file = await File.findOneAndUpdate({_id: req.params.id}, req.body, {
+        new: true, // return new folder instead of the old one,
+        runValidators: true
+    }).exec();
+
+    res.json(file);
+};

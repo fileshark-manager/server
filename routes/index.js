@@ -8,13 +8,13 @@ const {catchErrors} = require('../handlers/errorHandlers');
 router.get('/api/folder', catchErrors(folderController.getAll));
 router.get('/api/folder/:id', catchErrors(folderController.get));
 router.post('/api/folder', catchErrors(folderController.create));
-router.put('/api/folder/:id', folderController.update);
-router.delete('/api/folder/:id', folderController.delete);
+router.put('/api/folder/:id', catchErrors(folderController.update));
+router.delete('/api/folder/:id', catchErrors(folderController.delete));
 
-router.get('/api/file', fileController.getAll); // учесть offset, limit, folder в GET параметрах для пагинации
-router.get('/api/file/:id', fileController.get);
-router.post('/api/file', fileController.create);
-// router.put('/:id', updateFileController);
+router.get('/api/file', catchErrors(fileController.getAll)); // учесть offset, limit, folder в GET параметрах для пагинации
+router.get('/api/file/:id', catchErrors(fileController.get));
+router.post('/api/file', catchErrors(fileController.create));
+router.put('/api/file/:id', catchErrors(fileController.update));
 // router.delete('/:id', deleteFileController);
 
 module.exports = router;
