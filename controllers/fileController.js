@@ -3,6 +3,7 @@ const File = mongoose.model('File');
 const multer = require('multer');
 const jimp = require('jimp');
 const uuid = require('uuid');
+const promisify = require('es6-promisify');
 
 const multerOptions = {
     storage: multer.memoryStorage(),
@@ -30,12 +31,21 @@ exports.resize = async (req, res, next) => {
 
     const fileName = `${uuid.v4()}.${extension}`;
 
-    req.body.url = `/uploads/${fileName}`;
-
     const file = await jimp.read(req.file.buffer);
 
-    await file.resize(800, jimp.AUTO);
+    await file.resize(200, jimp.AUTO);
     await file.write(`./public/uploads/${fileName}`);
+
+    const getBuffer = promisify(file.getBuffer, file);
+
+    const buffer = await getBuffer(jimp.AUTO);
+    const size = `${parseInt(buffer.length / 1000)} KB`;
+
+    req.body.title = req.file.originalname;
+    req.body.filename = req.file.originalname;
+    req.body.url = `/uploads/${fileName}`;
+    req.body.dimensions = `${file.bitmap.width}x${file.bitmap.height}`;
+    req.body.size = size;
 
     next();
 };
