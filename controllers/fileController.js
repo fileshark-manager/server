@@ -15,6 +15,10 @@ const multerOptions = {
         } else {
             next({message: 'That filetype is not allowed!'}, false);
         }
+    },
+    limits: {
+        files: 1,
+        fileSize: 40960
     }
 };
 
