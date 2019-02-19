@@ -21,4 +21,9 @@ router.post('/api/file',
 router.put('/api/file/:id', catchErrors(fileController.update));
 router.delete('/api/file/:id', catchErrors(fileController.delete));
 
+router.get('/api/bigbang',
+    catchErrors(folderController.bang),
+    catchErrors(fileController.bang)
+);
+
 module.exports = router;

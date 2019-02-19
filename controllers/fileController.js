@@ -4,6 +4,8 @@ const multer = require('multer');
 const jimp = require('jimp');
 const uuid = require('uuid');
 const promisify = require('es6-promisify');
+const rimraf = require('rimraf');
+const path = require('path');
 
 const multerOptions = {
     storage: multer.memoryStorage(),
@@ -104,4 +106,12 @@ exports.delete = async (req, res) => {
     await File.findOneAndRemove({_id: id});
 
     return res.json(id);
+};
+
+exports.bang = async (req, res) => {
+    await File.remove();
+
+    rimraf('./public/uploads/*', function () {
+        res.send('💥');
+    });
 };

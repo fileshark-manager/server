@@ -35,3 +35,9 @@ exports.delete = async (req, res) => {
 
     return res.json(id);
 };
+
+exports.bang = async (req, res, next) => {
+    await Folder.remove();
+
+    next();
+};
