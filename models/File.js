@@ -49,7 +49,9 @@ fileSchema.virtual('extension').get(function() {
 });
 
 fileSchema.path('url').get(function(value) {
-    return `${process.env.HOST}${value}`;
+    const newValue = value.replace(/\/$/, ''); // Match a forward slash / at the end of the string ($) and remove it
+
+    return `${process.env.HOST}${newValue}`;
 });
 
 module.exports = mongoose.model('File', fileSchema);
