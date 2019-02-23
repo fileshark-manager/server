@@ -26,7 +26,10 @@ app.use(cookieParser());
 
 // cors headers
 app.use((req, res, next) => {
-    const allowedOrigins = ['http://localhost:3000'];
+    const allowedOrigins = [
+        'http://localhost:3000',
+        'https://media-manager-front.herokuapp.com'
+    ];
     const {origin = ''} = req.headers;
 
     if (allowedOrigins.indexOf(origin) > -1){
