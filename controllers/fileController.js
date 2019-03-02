@@ -114,3 +114,4 @@ exports.bang = async (req, res) => {
         res.send('💥');
     });
 };
+
