@@ -20,7 +20,7 @@ const multerOptions = {
     },
     limits: {
         files: 1,
-        fileSize: 40960
+        fileSize: 100000
     }
 };
 
