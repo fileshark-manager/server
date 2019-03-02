@@ -39,7 +39,6 @@ exports.resize = async (req, res, next) => {
 
     const file = await jimp.read(req.file.buffer);
 
-    await file.resize(200, jimp.AUTO);
     await file.write(`./public/uploads/${fileName}`);
 
     const getBuffer = promisify(file.getBuffer, file);
