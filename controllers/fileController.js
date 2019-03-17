@@ -6,6 +6,8 @@ const uuid = require('uuid');
 const promisify = require('es6-promisify');
 const rimraf = require('rimraf');
 const path = require('path');
+const fs = require('fs');
+const files = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'files.json'), 'utf-8'));
 
 const multerOptions = {
     storage: multer.memoryStorage(),
@@ -107,11 +109,20 @@ exports.delete = async (req, res) => {
     return res.json(id);
 };
 
-exports.bang = async (req, res) => {
+exports.bang = async (req, res, next) => {
     await File.remove();
 
     rimraf('./public/uploads/*', function () {
-        res.send('💥');
+        next();
     });
+};
+
+exports.loadSample = async (req, res) => {
+    await File.insertMany(files);
+
+    fs.copyFileSync('./data/uploads/cfb789e0-42fa-4b56-9bb4-cf5f814a12cd.jpeg', './public/uploads/cfb789e0-42fa-4b56-9bb4-cf5f814a12cd.jpeg');
+    fs.copyFileSync('./data/uploads/ec643ee8-3ef7-4da2-850c-8fbcace680e1.jpeg', './public/uploads/ec643ee8-3ef7-4da2-850c-8fbcace680e1.jpeg');
+
+    res.send('💥');
 };
 
