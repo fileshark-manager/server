@@ -23,7 +23,10 @@ router.delete('/api/file/:id', catchErrors(fileController.delete));
 
 router.get('/api/bigbang',
     catchErrors(folderController.bang),
-    catchErrors(fileController.bang)
+    catchErrors(fileController.bang),
+
+    catchErrors(folderController.loadSample),
+    catchErrors(fileController.loadSample)
 );
 
 module.exports = router;
