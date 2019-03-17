@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
+const path = require('path');
+const fs = require('fs');
 const Folder = mongoose.model('Folder');
+const folders = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'folders.json'), 'utf-8'));
 
 exports.getAll = async (req, res) => {
     const folders = await Folder.find();
@@ -38,6 +41,12 @@ exports.delete = async (req, res) => {
 
 exports.bang = async (req, res, next) => {
     await Folder.remove();
+
+    next();
+};
+
+exports.loadSample = async (req, res, next) => {
+    await Folder.insertMany(folders);
 
     next();
 };
