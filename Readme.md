@@ -16,7 +16,7 @@ This backend part is written in JS and uses mongoDB for storing data.
 
 4. Rename `variables.env.sample` to `variables.env`
 
-5. Fill `variables.env` with your data. You will need mongoDB for this project so you can [setup](https://docs.mongodb.com/v3.2/administration/install-community/) and run it locally or use some online service (for example [mlab](https://mlab.com/))
+5. Fill `variables.env` with your data. You will need mongoDB for this project. You can [setup](https://docs.mongodb.com/v3.2/administration/install-community/) and run it locally or use some online service (for example [mlab](https://mlab.com/))
 
 ### Launching
 
