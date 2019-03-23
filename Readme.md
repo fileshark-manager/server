@@ -1,6 +1,10 @@
 # «FILE.SHARK» media manager backend example
 
-## This project represents an example of backend part for [«FILE.SHARK» media manager](https://fileshark-manager.github.io/landing/). It is written in JS and uses mongoDB for storing data.
+## This project represents an example of backend part for «FILE.SHARK» media manager. 
+## [«FILE.SHARK» media manager landing page](https://fileshark-manager.github.io/landing/)
+## [«FILE.SHARK» media manager demo page](https://media-manager-front.herokuapp.com/)
+
+This backend part is written in JS and uses mongoDB for storing data.
 
 ### Installation
 
