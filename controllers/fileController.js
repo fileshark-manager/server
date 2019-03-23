@@ -109,6 +109,9 @@ exports.delete = async (req, res) => {
     return res.json(id);
 };
 
+/**
+ * This is function is for demo purpose only
+ */
 exports.bang = async (req, res, next) => {
     await File.remove();
 
@@ -117,6 +120,9 @@ exports.bang = async (req, res, next) => {
     });
 };
 
+/**
+ * This is function is for demo purpose only
+ */
 exports.loadSample = async (req, res) => {
     await File.insertMany(files);
 
