@@ -39,12 +39,18 @@ exports.delete = async (req, res) => {
     return res.json(id);
 };
 
+/**
+ * This function is for demo purpose only
+ */
 exports.bang = async (req, res, next) => {
     await Folder.remove();
 
     next();
 };
 
+/**
+ * This function is for demo purpose only
+ */
 exports.loadSample = async (req, res, next) => {
     await Folder.insertMany(folders);
 
