@@ -1,7 +1,16 @@
 {
-    "name": "media-manager-server",
+    "name": "fileshark-media-manager-server",
     "version": "0.0.1",
-    "private": true,
+    "description": "Backend part for File.Shark media manager.",
+    "keywords": [
+        "javascript",
+        "media-manager",
+        "media",
+        "manager",
+        "backend",
+        "nodejs",
+        "mongodb"
+    ],
     "engines": {
         "node": ">= 7.6.0"
     },
